@@ -38,15 +38,14 @@ jobs:
       # Step 4: Build the Docker image
       - name: Build Docker image
         run: |
-          docker build -t gmtnindia/wpagents:${{ github.sha }} .
+          docker build -t gmtnindia/wpagents:wp-agent .
 
       # Step 5: Push the Docker image to Docker Hub
       - name: Push Docker image to Docker Hub
         run: |
-          docker push gmtnindia/wpagents:${{ github.sha }}
-
+          docker push gmtnindia/wpagents:wp-agent
       # Step 6: Tag the image as 'latest' and push (optional)
       - name: Tag image as 'latest'
         run: |
-          docker tag gmtnindia/wpagents:${{ github.sha }} gmtnindia/wpagents:latest
+          docker tag gmtnindia/wpagents:{{ github.sha }} gmtnindia/wpagents:latest
           docker push gmtnindia/wpagents:latest
