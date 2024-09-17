@@ -47,5 +47,5 @@ jobs:
       # Step 6: Tag the image as 'latest' and push (optional)
       - name: Tag image as 'latest'
         run: |
-          docker tag gmtnindia/wpagents:{{ github.sha }} gmtnindia/wpagents:latest
+          docker tag gmtnindia/wpagents:latest gmtnindia/wpagents:latest
           docker push gmtnindia/wpagents:latest
