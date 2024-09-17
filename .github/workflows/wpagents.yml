@@ -32,21 +32,21 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-         username: ${{ secrets.DOCKER_HUB_USERNAME }}
-         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
       # Step 4: Build the Docker image
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }} .
+          docker build -t gmtnindia/wpagents:${{ github.sha }} .
 
       # Step 5: Push the Docker image to Docker Hub
       - name: Push Docker image to Docker Hub
         run: |
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
+          docker push gmtnindia/wpagents:${{ github.sha }}
 
-      # Step 6: Tag the image with 'latest' and push (optional)
+      # Step 6: Tag the image as 'latest' and push (optional)
       - name: Tag image as 'latest'
         run: |
-          docker tag ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }} ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:latest
-          docker push gmtnindia/wpagents:latest   
+          docker tag gmtnindia/wpagents:${{ github.sha }} gmtnindia/wpagents:latest
+          docker push gmtnindia/wpagents:latest
